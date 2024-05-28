@@ -33,7 +33,32 @@ function getWeather(lat, lon) {
 }
 
 function displayCurrentWeather(data) {
-  // Display the current weather conditions
+  // Clear the current weather section
+  currentWeather.innerHTML = "";
+
+  // Create HTML elements for the city name, date, weather conditions, temperature, humidity, and wind speed
+  const cityName = document.createElement("h2");
+  const date = document.createElement("p");
+  const weatherConditions = document.createElement("p");
+  const temperature = document.createElement("p");
+  const humidity = document.createElement("p");
+  const windSpeed = document.createElement("p");
+
+  // Set the text content of the elements
+  cityName.textContent = data.city.name;
+  date.textContent = new Date(data.list[0].dt * 1000).toLocaleDateString();
+  weatherConditions.textContent = data.list[0].weather[0].description;
+  temperature.textContent = `Temperature: ${data.list[0].main.temp} °F`;
+  humidity.textContent = `Humidity: ${data.list[0].main.humidity} %`;
+  windSpeed.textContent = `Wind Speed: ${data.list[0].wind.speed} MPH`;
+
+  // Append the elements to the current weather section
+  currentWeather.appendChild(cityName);
+  currentWeather.appendChild(date);
+  currentWeather.appendChild(weatherConditions);
+  currentWeather.appendChild(temperature);
+  currentWeather.appendChild(humidity);
+  currentWeather.appendChild(windSpeed);
 }
 
 function displayForecast(data) {
