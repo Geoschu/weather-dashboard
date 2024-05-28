@@ -144,10 +144,23 @@ function loadSearchHistory() {
   // Load the search history from localStorage and display it
 }
 
-searchHistory.addEventListener("click", function (event) {
+searchHistory.addEventListener("contextmenu", function (event) {
+  event.preventDefault();
+
   if (event.target.tagName === "BUTTON") {
-    getCoordinates(event.target.textContent);
+    // Get the current search history from localStorage
+    let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+
+    // Remove the city from the search history
+    const cityIndex = searchHistory.indexOf(event.target.textContent);
+    if (cityIndex > -1) {
+      searchHistory.splice(cityIndex, 1);
+    }
+
+    // Save the updated search history to localStorage
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+
+    // Reload the search history
+    loadSearchHistory();
   }
 });
-
-loadSearchHistory();
