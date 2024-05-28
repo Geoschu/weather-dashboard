@@ -115,7 +115,29 @@ function displayForecast(data) {
 }
 
 function saveSearchHistory(city) {
-  // Save the city to localStorage
+  // Get the current search history from localStorage
+  let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+
+  // Add the city to the search history
+  searchHistory.push(city);
+
+  // Save the updated search history to localStorage
+  localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+}
+
+function loadSearchHistory() {
+  // Get the search history from localStorage
+  let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+
+  // Clear the search history element
+  searchHistoryElement.innerHTML = "";
+
+  // Create a button for each city in the search history
+  for (let city of searchHistory) {
+    const cityButton = document.createElement("button");
+    cityButton.textContent = city;
+    searchHistoryElement.appendChild(cityButton);
+  }
 }
 
 function loadSearchHistory() {
