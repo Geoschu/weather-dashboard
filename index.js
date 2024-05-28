@@ -36,36 +36,35 @@ function displayCurrentWeather(data) {
   // Clear the current weather section
   currentWeather.innerHTML = "";
 
-  // Create HTML elements for the city name, date, weather conditions, temperature, humidity, and wind speed
+  // Create HTML elements for the city name, date, weather conditions, temperature, humidity, wind speed, and weather icon
   const cityName = document.createElement("h2");
   const date = document.createElement("p");
   const weatherConditions = document.createElement("p");
   const temperature = document.createElement("p");
   const humidity = document.createElement("p");
   const windSpeed = document.createElement("p");
+  const weatherIcon = document.createElement("img");
 
   // Set the text content of the elements
   cityName.textContent = data.city.name;
-
-  // Convert Unix timestamp to standard American time notation
   date.textContent = new Date(data.list[0].dt * 1000).toLocaleString("en-US", {
     dateStyle: "full",
     timeStyle: "short",
   });
-
   weatherConditions.textContent = data.list[0].weather[0].description;
-
-  // Convert temperature from Kelvin to Fahrenheit
   const tempInFahrenheit = ((data.list[0].main.temp - 273.15) * 9) / 5 + 32;
   temperature.textContent = `Temperature: ${tempInFahrenheit.toFixed(2)} °F`;
-
   humidity.textContent = `Humidity: ${data.list[0].main.humidity} %`;
   windSpeed.textContent = `Wind Speed: ${data.list[0].wind.speed} MPH`;
+
+  // Set the src of the weather icon
+  weatherIcon.src = `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`;
 
   // Append the elements to the current weather section
   currentWeather.appendChild(cityName);
   currentWeather.appendChild(date);
   currentWeather.appendChild(weatherConditions);
+  currentWeather.appendChild(weatherIcon);
   currentWeather.appendChild(temperature);
   currentWeather.appendChild(humidity);
   currentWeather.appendChild(windSpeed);
