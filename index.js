@@ -140,10 +140,6 @@ function loadSearchHistory() {
   }
 }
 
-function loadSearchHistory() {
-  // Load the search history from localStorage and display it
-}
-
 searchHistory.addEventListener("contextmenu", function (event) {
   event.preventDefault();
 

@@ -1,0 +1,53 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+#city-form {
+  margin: 20px;
+}
+
+#city-input {
+  padding: 10px;
+  font-size: 16px;
+}
+
+#current-weather,
+#forecast {
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+#current-weather h2,
+#current-weather p,
+#forecast h2,
+#forecast p {
+  margin: 10px 0;
+}
+
+#search-history {
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+#search-history ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#search-history ul li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+#search-history ul li:last-child {
+  border-bottom: none;
+}
