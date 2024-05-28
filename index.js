@@ -71,7 +71,47 @@ function displayCurrentWeather(data) {
 }
 
 function displayForecast(data) {
-  // Display the 5-day forecast
+  // Clear the forecast section
+  forecast.innerHTML = "";
+
+  // Create a header for the forecast section
+  const forecastHeader = document.createElement("h2");
+  forecastHeader.textContent = "5-Day Forecast:";
+  forecast.appendChild(forecastHeader);
+
+  // Loop over the forecast data for the next 5 days
+  for (let i = 1; i < 6; i++) {
+    // Create HTML elements for the date, icon, temperature, and humidity
+    const forecastDate = document.createElement("p");
+    const forecastIcon = document.createElement("img");
+    const forecastTemp = document.createElement("p");
+    const forecastHumidity = document.createElement("p");
+
+    // Set the text content and src of the elements
+    forecastDate.textContent = new Date(
+      data.list[i * 8 - 1].dt * 1000
+    ).toLocaleDateString();
+    forecastIcon.src = `http://openweathermap.org/img/wn/${
+      data.list[i * 8 - 1].weather[0].icon
+    }.png`;
+    const tempInFahrenheit =
+      ((data.list[i * 8 - 1].main.temp - 273.15) * 9) / 5 + 32;
+    forecastTemp.textContent = `Temp: ${tempInFahrenheit.toFixed(2)} °F`;
+    forecastHumidity.textContent = `Humidity: ${
+      data.list[i * 8 - 1].main.humidity
+    } %`;
+
+    // Create a div to hold the forecast for this day and add the elements to it
+    const forecastDiv = document.createElement("div");
+    forecastDiv.classList.add("forecast");
+    forecastDiv.appendChild(forecastDate);
+    forecastDiv.appendChild(forecastIcon);
+    forecastDiv.appendChild(forecastTemp);
+    forecastDiv.appendChild(forecastHumidity);
+
+    // Append the div to the forecast section
+    forecast.appendChild(forecastDiv);
+  }
 }
 
 function saveSearchHistory(city) {
