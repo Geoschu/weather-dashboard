@@ -3,6 +3,8 @@ body {
   background-color: #f4f4f4;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 #city-form {
@@ -31,11 +33,8 @@ body {
 }
 
 #search-history {
-  position: fixed;
-  left: 0;
-  top: 0;
   width: 200px;
-  height: 100%;
+  height: 100vh;
   overflow: auto;
   background-color: #f4f4f4;
   padding: 20px;
@@ -67,4 +66,9 @@ body {
   text-decoration: none;
   color: #333;
   cursor: pointer;
+}
+
+#main-content {
+  flex-grow: 1;
+  padding: 20px;
 }
