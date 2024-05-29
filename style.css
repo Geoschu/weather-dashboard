@@ -18,11 +18,21 @@ body {
 
 #current-weather,
 #forecast {
+  display: flex;
+  justify-content: space-between;
   margin: 20px;
   padding: 20px;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.forecast-day {
+  flex: 1;
+  border: 1px solid black;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 10px;
 }
 
 #current-weather h2,
@@ -74,13 +84,13 @@ body {
 }
 
 header {
-  background: linear-gradient(to right, lightblue, blue);
+  background: linear-gradient(to right, #465ab8, #261360);
   text-align: center;
   padding: 20px;
 }
 
 header h1 {
-  color: black;
+  color: white;
   margin: 0;
 }
 
