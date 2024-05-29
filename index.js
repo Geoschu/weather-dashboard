@@ -10,6 +10,7 @@ cityForm.addEventListener("submit", function (event) {
   event.preventDefault();
   const city = cityInput.value;
   getCoordinates(city);
+  cityInput.value = ""; // Clear the search box
 });
 
 function getCoordinates(city) {
@@ -17,10 +18,10 @@ function getCoordinates(city) {
     `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
   )
     .then((response) => response.json())
-    .then((data) => getWeather(data.coord.lat, data.coord.lon));
+    .then((data) => getWeather(data.coord.lat, data.coord.lon, city));
 }
 
-function getWeather(lat, lon) {
+function getWeather(lat, lon, city) {
   fetch(
     `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`
   )
@@ -28,10 +29,9 @@ function getWeather(lat, lon) {
     .then((data) => {
       displayCurrentWeather(data);
       displayForecast(data);
-      saveSearchHistory(cityInput.value);
+      saveSearchHistory(city);
     });
 }
-
 function displayCurrentWeather(data) {
   // Clear the current weather section
   currentWeather.innerHTML = "";
@@ -132,20 +132,20 @@ const forecastDate = document.createElement("p");
 forecastDate.classList.add("forecast-date");
 
 function saveSearchHistory(city) {
-  // Get the current search history from localStorage
-  let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+  // Only proceed if the city name is not blank
+  if (city.trim() !== "") {
+    // Get the current search history from localStorage
+    let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
 
-  // Log the retrieved search history to the console
-  console.log("Retrieved search history:", searchHistory);
+    // Add the city to the search history
+    searchHistory.push(city);
 
-  // Add the city to the search history
-  searchHistory.push(city);
+    // Save the updated search history to localStorage
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 
-  // Save the updated search history to localStorage
-  localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-
-  // Load the updated search history
-  loadSearchHistory();
+    // Load the updated search history
+    loadSearchHistory();
+  }
 }
 
 // Load the search history when the page is loaded
@@ -170,7 +170,7 @@ function loadSearchHistory() {
     cityButton.textContent = searchHistory[i];
     cityButton.classList.add("city-button");
     cityButton.addEventListener("click", function () {
-      getWeather(searchHistory[i]);
+      getCoordinates(searchHistory[i]); // Call getCoordinates instead of getWeather
     });
 
     deleteButton.textContent = "Delete";
@@ -180,8 +180,8 @@ function loadSearchHistory() {
       searchHistory.splice(i, 1);
       localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 
-      // Reload the search history
-      loadSearchHistory();
+      // Reload the search history after a delay
+      setTimeout(loadSearchHistory, 0);
     });
 
     cityDiv.appendChild(cityButton);
