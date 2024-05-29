@@ -8,6 +8,9 @@ body {
 }
 
 #city-form {
+  padding: 10px;
+
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -15,6 +18,8 @@ body {
 }
 
 #city-input {
+  text-align: center;
+  padding: 10px;
   border-radius: 5px;
   font-size: 1.2em;
   color: lightgrey;
@@ -26,6 +31,8 @@ body {
 
 button[type="submit"] {
   color: lightgrey;
+  font-weight: bold;
+  padding: 10px;
   border-radius: 5px;
   background-color: #465ab8;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
@@ -69,9 +76,17 @@ button[type="submit"] {
   background-color: #384252;
 }
 
+.forecast p {
+  color: white;
+}
+
+.forecast-date {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
 .forecast-day {
   display: flex;
-  /* flex-direction: row; */
   flex: 1;
   border: 1px solid black;
   box-sizing: border-box;
@@ -88,6 +103,10 @@ button[type="submit"] {
 #forecast h2,
 #forecast p {
   margin: 10px 0;
+}
+
+#current-weather h2 {
+  font-size: 2em;
 }
 
 #search-history {
@@ -126,14 +145,15 @@ button[type="submit"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
-  text-align: left;
-  background: #f4f4f4; /* background color of the box */
-  border: 1px solid #ddd; /* border around the box */
-  border-radius: 5px; /* rounded corners */
+  text-align: center;
+  font-weight: bold;
+  background: #b1b1b1;
+  border: 1px solid #ddd;
+  border-radius: 5px;
   text-decoration: none;
   color: #333;
   cursor: pointer;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1); /* shadow effect */
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
 #main-content {
@@ -163,5 +183,33 @@ label {
 }
 
 .delete-button {
-  height: 80%;
+  display: block;
+  width: 25%;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+  background: #b1b1b1;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.center-text {
+  text-align: center;
+}
+
+@keyframes clickAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

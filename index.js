@@ -38,21 +38,19 @@ function displayCurrentWeather(data) {
 
   // Create HTML elements for the city name, date, weather conditions, temperature, humidity, wind speed, and weather icon
   const cityName = document.createElement("h2");
-  const date = document.createElement("p");
   const weatherConditions = document.createElement("p");
   const temperature = document.createElement("p");
-  const humidity = document.createElement("p");
   const windSpeed = document.createElement("p");
+  const humidity = document.createElement("p");
   const weatherIcon = document.createElement("img");
-  // Create a div to hold the date and weather icon
-  const dateAndIcon = document.createElement("div");
 
   // Set the text content of the elements
-  cityName.textContent = data.city.name;
-  date.textContent = new Date(data.list[0].dt * 1000).toLocaleString("en-US", {
+  cityName.textContent = `${data.city.name} - ${new Date(
+    data.list[0].dt * 1000
+  ).toLocaleString("en-US", {
     dateStyle: "full",
     timeStyle: "short",
-  });
+  })}`;
   weatherConditions.textContent = data.list[0].weather[0].description;
   const tempInFahrenheit = ((data.list[0].main.temp - 273.15) * 9) / 5 + 32;
   temperature.textContent = `Temperature: ${tempInFahrenheit.toFixed(2)} °F`;
@@ -62,15 +60,12 @@ function displayCurrentWeather(data) {
   // Set the src of the weather icon
   weatherIcon.src = `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`;
 
-  // Append the date and weather icon to the div
-  dateAndIcon.appendChild(date);
-  dateAndIcon.appendChild(weatherIcon);
+  // Append the weather icon to the city name
+  cityName.appendChild(weatherIcon);
 
   // Append the elements to the current weather section
   currentWeather.appendChild(cityName);
-  currentWeather.appendChild(dateAndIcon);
   currentWeather.appendChild(weatherConditions);
-
   currentWeather.appendChild(temperature);
   currentWeather.appendChild(humidity);
   currentWeather.appendChild(windSpeed);
@@ -80,10 +75,18 @@ function displayForecast(data) {
   // Clear the forecast section
   forecast.innerHTML = "";
 
-  // Create a header for the forecast section
-  const forecastHeader = document.createElement("h2");
-  forecastHeader.textContent = "5-Day Forecast:";
-  forecast.appendChild(forecastHeader);
+  // Check if the forecast header already exists
+  let forecastHeader = document.querySelector(".center-text");
+
+  // If it doesn't exist, create it
+  if (!forecastHeader) {
+    forecastHeader = document.createElement("h2");
+    forecastHeader.textContent = "5-Day Forecast:";
+    forecastHeader.classList.add("center-text");
+
+    // Append the header to the parent of the forecast section
+    forecast.parentElement.insertBefore(forecastHeader, forecast);
+  }
 
   // Loop over the forecast data for the next 5 days
   for (let i = 1; i < 6; i++) {
@@ -124,6 +127,9 @@ function displayForecast(data) {
     forecast.appendChild(forecastDiv);
   }
 }
+
+const forecastDate = document.createElement("p");
+forecastDate.classList.add("forecast-date");
 
 function saveSearchHistory(city) {
   // Get the current search history from localStorage
