@@ -35,6 +35,11 @@ function getWeather(lat, lon, city) {
 function displayCurrentWeather(data) {
   // Clear the current weather section
   currentWeather.innerHTML = "";
+  function capitalizeWords(str) {
+    return str.replace(/\b\w/g, function (char) {
+      return char.toUpperCase();
+    });
+  }
 
   // Create HTML elements for the city name, date, weather conditions, temperature, humidity, wind speed, and weather icon
   const cityName = document.createElement("h2");

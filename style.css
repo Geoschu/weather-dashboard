@@ -65,8 +65,9 @@ button[type="submit"] {
 
 .forecast {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-
+  font-weight: bold;
   border: 1px solid #ccc;
   padding: 10px;
   margin: 10px;
@@ -75,8 +76,13 @@ button[type="submit"] {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   background-color: #384252;
 }
+.forecast p:first-child {
+  font-weight: bold;
+  text-align: center;
+}
 
 .forecast p {
+  font-weight: normal;
   color: white;
 }
 
@@ -212,4 +218,17 @@ label {
   100% {
     transform: scale(1);
   }
+}
+
+#current-weather h2 img {
+  vertical-align: bottom;
+  width: 40px;
+  height: 40px;
+}
+
+.forecast img {
+  margin: auto;
+  display: block;
+  width: 40px;
+  height: 40px;
 }
