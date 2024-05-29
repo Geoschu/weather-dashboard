@@ -4,7 +4,7 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
 }
 
 #city-form {
@@ -71,4 +71,20 @@ body {
 #main-content {
   flex-grow: 1;
   padding: 20px;
+}
+
+header {
+  background: linear-gradient(to right, lightblue, blue);
+  text-align: center;
+  padding: 20px;
+}
+
+header h1 {
+  color: black;
+  margin: 0;
+}
+
+#content {
+  display: flex;
+  flex-direction: row;
 }
