@@ -129,14 +129,38 @@ function loadSearchHistory() {
   // Get the search history from localStorage
   let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
 
-  // Clear the search history element
-  searchHistoryElement.innerHTML = "";
+  // Get the search history sidebar element
+  let searchHistorySidebar = document.getElementById("search-history");
+
+  // Clear the search history sidebar
+  searchHistorySidebar.innerHTML = "";
 
   // Create a button for each city in the search history
-  for (let city of searchHistory) {
-    const cityButton = document.createElement("button");
-    cityButton.textContent = city;
-    searchHistoryElement.appendChild(cityButton);
+  for (let i = 0; i < searchHistory.length; i++) {
+    let cityDiv = document.createElement("div");
+    let cityButton = document.createElement("button");
+    let deleteButton = document.createElement("button");
+
+    cityButton.textContent = searchHistory[i];
+    cityButton.classList.add("city-button");
+    cityButton.addEventListener("click", function () {
+      getWeather(searchHistory[i]);
+    });
+
+    deleteButton.textContent = "Delete";
+    deleteButton.classList.add("delete-button");
+    deleteButton.addEventListener("click", function () {
+      // Remove the city from the search history
+      searchHistory.splice(i, 1);
+      localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+
+      // Reload the search history
+      loadSearchHistory();
+    });
+
+    cityDiv.appendChild(cityButton);
+    cityDiv.appendChild(deleteButton);
+    searchHistorySidebar.appendChild(cityDiv);
   }
 }
 
