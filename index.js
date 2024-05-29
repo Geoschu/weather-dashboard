@@ -87,11 +87,12 @@ function displayForecast(data) {
 
   // Loop over the forecast data for the next 5 days
   for (let i = 1; i < 6; i++) {
-    // Create HTML elements for the date, icon, temperature, and humidity
+    // Create HTML elements for the date, icon, temperature, humidity, and wind speed
     const forecastDate = document.createElement("p");
     const forecastIcon = document.createElement("img");
     const forecastTemp = document.createElement("p");
     const forecastHumidity = document.createElement("p");
+    const forecastWindSpeed = document.createElement("p"); // New element for wind speed
 
     // Set the text content and src of the elements
     forecastDate.textContent = new Date(
@@ -106,6 +107,9 @@ function displayForecast(data) {
     forecastHumidity.textContent = `Humidity: ${
       data.list[i * 8 - 1].main.humidity
     } %`;
+    forecastWindSpeed.textContent = `Wind Speed: ${
+      data.list[i * 8 - 1].wind.speed
+    } MPH`; // Set the text content for wind speed
 
     // Create a div to hold the forecast for this day and add the elements to it
     const forecastDiv = document.createElement("div");
@@ -113,6 +117,7 @@ function displayForecast(data) {
     forecastDiv.appendChild(forecastDate);
     forecastDiv.appendChild(forecastIcon);
     forecastDiv.appendChild(forecastTemp);
+    forecastDiv.appendChild(forecastWindSpeed); // Append the wind speed element
     forecastDiv.appendChild(forecastHumidity);
 
     // Append the div to the forecast section
