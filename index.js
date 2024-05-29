@@ -44,6 +44,8 @@ function displayCurrentWeather(data) {
   const humidity = document.createElement("p");
   const windSpeed = document.createElement("p");
   const weatherIcon = document.createElement("img");
+  // Create a div to hold the date and weather icon
+  const dateAndIcon = document.createElement("div");
 
   // Set the text content of the elements
   cityName.textContent = data.city.name;
@@ -60,11 +62,15 @@ function displayCurrentWeather(data) {
   // Set the src of the weather icon
   weatherIcon.src = `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`;
 
+  // Append the date and weather icon to the div
+  dateAndIcon.appendChild(date);
+  dateAndIcon.appendChild(weatherIcon);
+
   // Append the elements to the current weather section
   currentWeather.appendChild(cityName);
-  currentWeather.appendChild(date);
+  currentWeather.appendChild(dateAndIcon);
   currentWeather.appendChild(weatherConditions);
-  currentWeather.appendChild(weatherIcon);
+
   currentWeather.appendChild(temperature);
   currentWeather.appendChild(humidity);
   currentWeather.appendChild(windSpeed);
@@ -118,12 +124,21 @@ function saveSearchHistory(city) {
   // Get the current search history from localStorage
   let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
 
+  // Log the retrieved search history to the console
+  console.log("Retrieved search history:", searchHistory);
+
   // Add the city to the search history
   searchHistory.push(city);
 
   // Save the updated search history to localStorage
   localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+
+  // Load the updated search history
+  loadSearchHistory();
 }
+
+// Load the search history when the page is loaded
+window.onload = loadSearchHistory;
 
 function loadSearchHistory() {
   // Get the search history from localStorage
