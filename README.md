@@ -1,5 +1,7 @@
 # Weather Dashboard
 
+##
+
 This is a simple web application that allows users to check the current weather and forecast for multiple cities. It uses the OpenWeatherMap API to fetch weather data.
 
 ## Features
@@ -14,6 +16,10 @@ This is a simple web application that allows users to check the current weather 
 2. The current weather for that city will be displayed, along with a 5-day forecast.
 3. Your search will be saved in the search history. You can click on a city in the search history to view its weather again.
 
+## Usage
+
+![screenshot of the site in use](assets/images/screenshot.png)
+
 ## Technologies Used
 
 - HTML
@@ -27,6 +33,16 @@ To set up this project locally for development:
 
 1. Clone this repository.
 2. Open `index.html` in your browser.
+
+## Deployment Link
+
+[Click here to go to the deployed site](https://geoschu.github.io/weather-dashboard/)
+
+## Credits & Resources
+
+[OpenWeatherMap API](https://openweathermap.org/api)
+[OpenWeatherMap API guide](https://openweathermap.org/guide)
+[Units in API response](https://openweathermap.org/weather-data)
 
 ## License
 
