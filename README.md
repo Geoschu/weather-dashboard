@@ -1,8 +1,33 @@
 # Weather Dashboard
 
-##
-
 This is a simple web application that allows users to check the current weather and forecast for multiple cities. It uses the OpenWeatherMap API to fetch weather data.
+
+- Motivation
+
+The motivation behind this project was to create a user-friendly tool that provides accurate and up-to-date weather information. This application aims to help users plan their activities based on the current weather and forecast of their chosen city.
+
+- Why This Was Built
+
+This application was built to provide a practical solution for those who need quick and reliable weather updates. It was also built as a way to explore and understand how to work with APIs, specifically the OpenWeatherMap API.
+
+- What It Solved
+
+This application solves the problem of having to search through multiple sources to get comprehensive weather data. It provides current weather conditions and a 5-day forecast all in one place, making it a convenient tool for users.
+
+- What I Learned
+
+Through this project, I gained a deeper understanding of how to use APIs in web development. I also learned how to manipulate the DOM using JavaScript and how to style a web application using CSS.
+
+## Table of Contents
+
+- [Features](#installation)
+- [How to Use](#how-to-use)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [Local Development](#local-development)
+- [Deployment Link](#deployment-link)
+- [Credits & Resources](#credits--resources)
+- [Lisence](#license)
 
 ## Features
 
@@ -46,4 +71,4 @@ To set up this project locally for development:
 
 ## License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source and available under the [ISC License](LICENSE).
