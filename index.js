@@ -15,7 +15,7 @@ cityForm.addEventListener("submit", function (event) {
 
 function getCoordinates(city) {
   fetch(
-    `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
   )
     .then((response) => response.json())
     .then((data) => getWeather(data.coord.lat, data.coord.lon, city));
