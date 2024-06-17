@@ -63,7 +63,7 @@ function displayCurrentWeather(data) {
   windSpeed.textContent = `Wind Speed: ${data.list[0].wind.speed} MPH`;
 
   // Set the src of the weather icon
-  weatherIcon.src = `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`;
+  weatherIcon.src = `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`;
 
   // Append the weather icon to the city name
   cityName.appendChild(weatherIcon);
@@ -106,7 +106,7 @@ function displayForecast(data) {
     forecastDate.textContent = new Date(
       data.list[i * 8 - 1].dt * 1000
     ).toLocaleDateString();
-    forecastIcon.src = `http://openweathermap.org/img/wn/${
+    forecastIcon.src = `https://openweathermap.org/img/wn/${
       data.list[i * 8 - 1].weather[0].icon
     }.png`;
     const tempInFahrenheit =
